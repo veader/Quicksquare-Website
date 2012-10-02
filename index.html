@@ -29,6 +29,7 @@
         width:222px;
         height:380px;
       }
+      #logo { width:266px;height:65px;}
       #tag-line { margin-top:-5px;margin-bottom:0;color:#CCC; }
       #app-desc { min-height:410px; }
       #app-desc ul li { padding-bottom:10px; }
@@ -38,6 +39,13 @@
       #required { background-color:#FFC;padding:8px 20px; }
       #andrew { font-size:0.8em; }
       #andrew a { color:#444; }
+
+      @media all and (-webkit-min-device-pixel-ratio: 2), all and (-moz-min-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 2), all and (-o-min-device-pixel-ratio: 2/1) {
+        #iphone-screen {
+          background-size:275px 571px;
+          background-image:url('img/screen5@2x.png');
+        }
+      }
     </style>
 
     <script type="text/javascript">
@@ -55,7 +63,7 @@
   <body>
     <div class="content">
       <div class="hero-unit map-background">
-        <h1><img src="img/logo.png" title="quicksquare" /></h1>
+        <h1><img src="img/logo.png" title="quicksquare" id="logo" /></h1>
       </div>
 
       <div class="container" style="margin-top:-20px;">
@@ -119,14 +127,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8">
+      var is_retina = window.devicePixelRatio > 1 ? true : false;
       var reset_timer = null;
+      $(window).load(function() {
+        if (is_retina) {
+          $('#logo').attr('src', "img/logo@2x.png");
+          $("#screen").attr("src", "img/screen_closed@2x.png");
+        }
+      });
       function swap_screen(state, btn) {
         clearTimeout(reset_timer);
-        $("#screen").attr("src", "img/screen_" + state + ".png");
+        var img_path = "img/screen_" + state;
+        if (is_retina) { img_path += "@2x"; }
+        img_path += ".png";
+        $("#screen").attr("src", img_path);
         $("#checkin-types").children().removeClass("btn-inverse");
         $(btn).addClass("btn-inverse");
         reset_timer = setTimeout( function() {
-          $("#screen").attr("src", "img/screen_closed.png");
+          var default_img_path = "img/screen_closed";
+          if (is_retina) { default_img_path += "@2x"; }
+          default_img_path += ".png";
+          $("#screen").attr("src", default_img_path);
           $("#checkin-types").children().removeClass("btn-inverse");
         }, 10000);
       }
