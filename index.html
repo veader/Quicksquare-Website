@@ -130,26 +130,25 @@
       var is_retina = window.devicePixelRatio > 1 ? true : false;
       var reset_timer = null;
       $(window).load(function() {
-        if (is_retina) {
-          $('#logo').attr('src', "img/logo@2x.png");
-          $("#screen").attr("src", "img/screen_closed@2x.png");
-        }
+        $("#logo").attr("src", full_img_path("logo"));
+        $("#screen").attr("src", full_img_path("screen_closed"));
       });
       function swap_screen(state, btn) {
         clearTimeout(reset_timer);
-        var img_path = "img/screen_" + state;
-        if (is_retina) { img_path += "@2x"; }
-        img_path += ".png";
-        $("#screen").attr("src", img_path);
+        $("#screen").attr("src", full_img_path("screen_" + state));
         $("#checkin-types").children().removeClass("btn-inverse");
         $(btn).addClass("btn-inverse");
         reset_timer = setTimeout( function() {
-          var default_img_path = "img/screen_closed";
-          if (is_retina) { default_img_path += "@2x"; }
-          default_img_path += ".png";
-          $("#screen").attr("src", default_img_path);
+          $("#screen").attr("src", full_img_path("screen_closed"));
           $("#checkin-types").children().removeClass("btn-inverse");
         }, 10000);
+      }
+      function full_img_path(root_path) {
+        // root_path should be without img/ and .png
+        var img_path = "img/" + root_path;
+        if (is_retina) { img_path += "@2x"; }
+        img_path += ".png";
+        return img_path;
       }
     </script>
   </body>
