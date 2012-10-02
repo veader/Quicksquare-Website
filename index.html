@@ -29,10 +29,15 @@
         width:222px;
         height:380px;
       }
+      #tag-line { margin-top:-5px;margin-bottom:0;color:#CCC; }
       #app-desc { min-height:410px; }
       #app-desc ul li { padding-bottom:10px; }
-      #app-store { width:160px;margin:0 auto;"> }
+      #app-store { width:160px;margin:0 auto; }
+      #checkin-types { margin-left:30px; }
+      #checkin-types h4 { padding-left:50px; }
       #required { background-color:#FFC;padding:8px 20px; }
+      #andrew { font-size:0.8em; }
+      #andrew a { color:#444; }
     </style>
 
     <script type="text/javascript">
@@ -55,11 +60,11 @@
 
       <div class="container" style="margin-top:-20px;">
         <div class="span4" id="app-desc">
-          <h3>Every tap counts</h3>
-          <p>
-            The <strong>quicksquare</strong> app provides a quicker way to
-            check in on <a href="http://foursquare.com/">foursquare</a> with
-            iPhone.
+          <br />
+          <h5 id="tag-line"><em>Every tap counts</em></h5>
+          <p class="lead">
+            A quicker way to check in on
+            <a href="http://foursquare.com/">foursquare</a> with iPhone.
           </p>
           <div id="app-store">
             <a href="http://quicksquareapp.com">
@@ -68,26 +73,30 @@
           </div>
           <hr />
 
-          <p>Two ways to check in:</p>
-          <ul class="unstyled" id="checkin-types">
-            <li>
-              <a href="#" onclick="swap_screen('open', this);" class="btn btn-block">Swipe</a>
-            </li>
-            <li>
-              <a href="#" onclick="swap_screen('detail', this);" class="btn btn-block">Tap</a>
-            </li>
-          </ul>
-          <hr />
+          <div class="row container" id="checkin-types">
+            <h4>Check in with a</h4>
+            <a href="#" onclick="swap_screen('open', this);"
+                        class="btn btn-large span1">Swipe</a>
+            <a href="#" onclick="swap_screen('detail', this);"
+                        class="btn btn-large span1">Tap</a>
+          </div>
+          <br />
 
           <p>
             The quicksquare location list also provides indications for
-            your mayorships and available specials.
+            your mayorships and available specials. Awarded specials and
+            special details are also available.
           </p>
 
           <div class="well" id="required">
             A <a href="https://foursquare.com/login">foursquare account</a>
             is <strong>required</strong>.
           </div>
+
+          <p class="muted" id="andrew">
+            Icon and other pixels by
+            <a href="http://andrewreifman.com">Andrew Reifman</a>
+          </p>
         </div>
 
         <div class="span4">
@@ -97,12 +106,14 @@
         </div>
       </div>
 
+
       <div class="footer">
         <div class="well">
-          Copyright &copy; 2012 &raquo;
+          &copy; 2012 All Rights Reserved &raquo;
           <a href="http://v8logic.com">V8 Logic</a>
         </div>
       </div>
+      <br />
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -112,11 +123,11 @@
       function swap_screen(state, btn) {
         clearTimeout(reset_timer);
         $("#screen").attr("src", "img/screen_" + state + ".png");
-        $("#checkin-types").children().children().removeClass("btn-inverse");
+        $("#checkin-types").children().removeClass("btn-inverse");
         $(btn).addClass("btn-inverse");
         reset_timer = setTimeout( function() {
           $("#screen").attr("src", "img/screen_closed.png");
-          $("#checkin-types").children().children().removeClass("btn-inverse");
+          $("#checkin-types").children().removeClass("btn-inverse");
         }, 10000);
       }
     </script>
