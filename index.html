@@ -12,6 +12,7 @@
       .content { width:650px;margin:0 auto;padding:20px 0 0 0; }
       .map-background { background-image:url('img/map2.png'); }
       .hero-unit { padding:50px 10px 10px 20px; }
+      .footer { position:relative; }
       .footer a { color:#666; }
       hr { margin:10px 0; }
       #iphone-screen {
@@ -39,12 +40,16 @@
       #required { background-color:#FFC;padding:8px 20px; }
       #andrew { font-size:0.8em; }
       #andrew a { color:#444; }
+      #follow { position:absolute;top:20px;right:20px;width:150px; }
 
       @media all and (-webkit-min-device-pixel-ratio: 2), all and (-moz-min-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 2), all and (-o-min-device-pixel-ratio: 2/1) {
         #iphone-screen {
           background-size:275px 571px;
           background-image:url('img/screen5@2x.png');
         }
+      }
+      @media only screen and (max-device-width: 480px) {
+        body { width:650px; }
       }
     </style>
 
@@ -119,6 +124,14 @@
         <div class="well">
           &copy; 2012 All Rights Reserved &raquo;
           <a href="http://v8logic.com">V8 Logic</a>
+
+          <div id="follow">
+            <a href="https://twitter.com/quicksquareapp"
+                class="twitter-follow-button"
+                data-show-count="false"
+                data-lang="en">Follow @quicksquareapp</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
         </div>
       </div>
       <br />
